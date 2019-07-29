@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+
+<body>
+    <div class="bg">
+		<img src="../style/bg.jpg">
+	</div>
+    <div class="box">
+        <div class="jz">
+            <p><b>抽奖活动</b></p>
+            <span class="name">姓名</span><br />
+            <span class="phone">电话</span><br />
+            <div class="start" id="btntxt" onclick="start()">开始</div>
+        </div>
+        <div class="zjmd">
+            <p class="p1">中奖者名单</p>
+            <div class="list">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../style/jquery-1.8.0.js.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            if(!localStorage.getItem("winningPeople")) {
+                alert("请添加抽奖参与人员");
+                return false;
+            }
+        }   
+        var allName = new Array();
+        var allPhone = new Array();
+        var winName = new Array();
+        var winPhone = new Array();
+        var allPeople = localStorage.getItem("allPeople") ? JSON.parse(localStorage.getItem("allPeople")) : "";
+        var winningPeople = localStorage.getItem("winningPeople") ? JSON.parse(localStorage.getItem("winningPeople")) : "";
+       
+        for(let i =0;i<allPeople.length;i++) {
+            allName.push(allPeople[i]['name']);
+            allPhone.push(allPeople[i]['phone']);
+        }
+        for(let j =0;j<winningPeople.length;j++) {
+            winName.push(winningPeople[j]['name']);
+            winPhone.push(winningPeople[j]['phone']);
+        }
+        var nametxt = $('.name');
+        var phonetxt = $('.phone');
+        var pcount = allName.length - 1; //参加人数
+        var runing = true;
+        var td = winName.length; //内定中奖,从最小奖开始，共指导个名额
+        var num = 0;
+        var winNum = 0;//中奖顺序
+        var t;
+        //开始停止
+        function start() {
+            if(!localStorage.getItem("winningPeople")) {
+                alert("请添加抽奖参与人员");
+                return false;
+            }
+            if (runing) {
+                runing = false;
+                $('#btntxt').removeClass('start').addClass('stop');
+                $('#btntxt').html('停止');
+                startNum()
+            } else {
+                runing = true;
+                $('#btntxt').removeClass('stop').addClass('start');
+                $('#btntxt').html('开始');
+                stop();
+                zd(); //内定中奖
+            }
+        }
+        //循环参加名单
+        function startNum() {
+            num = Math.floor(Math.random() * pcount);
+            nametxt.html(allName[num]);
+            phonetxt.html(allPhone[num]);
+            t = setTimeout(startNum, 0);
+        }
+        //停止跳动
+        function stop() {
+            pcount = allName.length - 1;
+            clearInterval(t);
+            t = 0;
+        }
+
+        function zd() {
+            if (td <= 0) {
+                alert("抽奖结束");
+                localStorage.setItem("winningPeople","");
+                return false;
+            }
+            nametxt.html(winName[0]);
+            phonetxt.html(winPhone[0]);
+            //打印中奖者名单
+            $('.list').prepend("<p>" + td + ' ' + winName[0] + " -- " + winPhone[0] + "</p>");
+            
+            //将已中奖者从数组中"删除",防止二次中奖
+            winName.splice($.inArray(winName[0], winName), 1);
+            winPhone.splice($.inArray(winPhone[0], winPhone), 1);
+            winningPeople.splice(0,1);
+            localStorage.setItem("winningPeople",JSON.stringify(winningPeople));
+            winNum++;
+            td = td - 1;
+        }
+    </script>
+</body>
+
+</html>

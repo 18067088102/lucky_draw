@@ -1,0 +1,35 @@
+[
+  {
+    "type": 0,
+    "title": {
+      "姓名": "name",
+      "电话": "phone",
+      "区县": "county",
+      "城市": "city"
+    },
+    "data": {
+      "id":0,
+      "name": "",
+      "phone": "",
+      "county": "",
+      "city": ""
+    }
+  },
+  {
+    "type": 1,
+    "title": {
+      "姓名": "name",
+      "电话": "phone",
+      "区县": "county",
+      "城市": "city"
+    },
+    "data": {
+      "id":0,
+      "name": "",
+      "phone": "",
+      "county": "",
+      "city": ""
+    }
+  }
+
+]

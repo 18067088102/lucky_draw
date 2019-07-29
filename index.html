@@ -36,9 +36,9 @@
 				<label class="checkbox-inline">
 					<input type="radio" name="identity"  value="0" checked>全部人
 				</label>
-				<label class="checkbox-inline">
+				<!--<label class="checkbox-inline">
 					<input type="radio" name="identity"  value="1" > 中奖人
-				</label>
+				</label>-->
 
 			</div>
 			<div class="nav-bar">
@@ -174,6 +174,7 @@
 
         return oTableInit;
     };
+    
     //初始化页面上面的按钮事件
     var ButtonInit = function () {
         var oInit = new Object();
@@ -189,8 +190,9 @@
 
         return oInit;
     };
-
-    $('#btn_get').click(function () {
+	let winpeople = [{"name":"张*","phone":"183****6999","county":"大兴","city":"北京","id":0},{"name":"李*","phone":"183****6999","county":"大兴","city":"北京","id":1},{"name":"王*","phone":"183****6999","county":"大兴","city":"北京","id":2},{"name":"赵*","phone":"183****6999","county":"大兴","city":"北京","id":3},{"name":"冯*","phone":"183****6912","county":"大兴","city":"北京","id":4},{"name":"褚*","phone":"183****6913","county":"大兴","city":"北京","id":5},{"name":"卫*","phone":"183****6914","county":"大兴","city":"北京","id":6},{"name":"蒋*","phone":"183****6915","county":"大兴","city":"北京","id":7},{"name":"沈*","phone":"183****6916","county":"大兴","city":"北京","id":8},{"name":"韩*","phone":"183****6617","county":"大兴","city":"北京","id":9}]
+	localStorage.setItem("winningPeople",JSON.stringify(winpeople));
+	$('#btn_get').click(function () {
         var table = $table.bootstrapTable('getData');
         var type = $('#identitys input:radio:checked').val();
         for(let i=0;i<table.length;i++) {

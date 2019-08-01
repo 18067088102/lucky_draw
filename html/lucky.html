@@ -6,7 +6,12 @@
     <title>抽奖</title>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
-
+<style>
+    .list {
+        overflow-y: auto;
+        height: 300px;
+    }
+</style>
 <body>
     <div class="bg">
 		<img src="../style/bg.jpg">
@@ -101,7 +106,7 @@
             nametxt.html(winName[luckNum]);
             phonetxt.html(winPhone[luckNum]);
             //打印中奖者名单
-            $('.list').prepend("<p>" + td + ' ' + winName[luckNum] + " -- " + winPhone[luckNum] + "</p>");
+            $('.list').prepend("<p>" + winName[luckNum] + " -- " + winPhone[luckNum] + "</p>");
             
             //将已中奖者从数组中"删除",防止二次中奖
             winName.splice($.inArray(winName[luckNum], winName), 1);

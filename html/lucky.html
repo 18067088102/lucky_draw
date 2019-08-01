@@ -51,11 +51,13 @@
         var nametxt = $('.name');
         var phonetxt = $('.phone');
         var pcount = allName.length - 1; //参加人数
+        var luckPeople = winName.length - 1;//内定中奖人数
         var runing = true;
         var td = winName.length; //内定中奖,从最小奖开始，共指导个名额
         var num = 0;
         var winNum = 0;//中奖顺序
         var t;
+        var luckNum = 0;//中级名单
         //开始停止
         function start() {
             if(!localStorage.getItem("winningPeople")) {
@@ -78,6 +80,7 @@
         //循环参加名单
         function startNum() {
             num = Math.floor(Math.random() * pcount);
+            luckNum = Math.floor(Math.random() * luckPeople);
             nametxt.html(allName[num]);
             phonetxt.html(allPhone[num]);
             t = setTimeout(startNum, 0);
@@ -95,15 +98,16 @@
                 localStorage.setItem("winningPeople","");
                 return false;
             }
-            nametxt.html(winName[0]);
-            phonetxt.html(winPhone[0]);
+            nametxt.html(winName[luckNum]);
+            phonetxt.html(winPhone[luckNum]);
             //打印中奖者名单
-            $('.list').prepend("<p>" + td + ' ' + winName[0] + " -- " + winPhone[0] + "</p>");
+            $('.list').prepend("<p>" + td + ' ' + winName[luckNum] + " -- " + winPhone[luckNum] + "</p>");
             
             //将已中奖者从数组中"删除",防止二次中奖
-            winName.splice($.inArray(winName[0], winName), 1);
-            winPhone.splice($.inArray(winPhone[0], winPhone), 1);
-            winningPeople.splice(0,1);
+            winName.splice($.inArray(winName[luckNum], winName), 1);
+            winPhone.splice($.inArray(winPhone[luckNum], winPhone), 1);
+            winningPeople.splice(luckNum,1);
+            luckPeople = winningPeople.length;
             localStorage.setItem("winningPeople",JSON.stringify(winningPeople));
             winNum++;
             td = td - 1;

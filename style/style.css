@@ -2,7 +2,7 @@
 .bg{width:100%;max-width:1920px;height:auto;position: absolute;
   top: 0;}
 .bg img{width:100%;}
-.box{width:80%;max-width:1000px;height:500px;margin:auto;text-align:center;position: relative;margin-top: 230px;}
+.box{width:80%;max-width:1000px;height:500px;margin:auto;text-align:center;position: relative;margin-top: 300px;}
 .jz{float:left;width:45%;height:auto;margin:auto;padding-left:200px;    margin-top: 65px;}
 .jz p{line-height:80px;text-align:center;font-size:50px;color:#ffffff;}
 .jz span{display: block;width:70%;height:40px;line-height:40px;margin:20px 0;text-align:left;font-size:30px;background: #ffffff;}

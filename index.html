@@ -2,100 +2,145 @@
 <!--suppress ALL -->
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width" />
-	<title>后台页面</title>
-	<!--Jquery组件引用-->
-	<script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/shim.js"></script>
-	<script src="js/xlsx.full.min.js"></script>
-	<!--bootstrap组件引用-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>后台页面</title>
+    <!--Jquery组件引用-->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/shim.js"></script>
+    <script src="js/xlsx.full.min.js"></script>
+    <!--bootstrap组件引用-->
 
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 
-	<!--bootstrap-editable组件以及中文包的引用-->
-	<link href="bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
-	<script src="bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <!--bootstrap-editable组件以及中文包的引用-->
+    <link href="bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 
-	<!--bootstrap table组件以及中文包的引用-->
-	<link href="bootstarp-table/css/bootstrap-table.min.css" rel="stylesheet" />
-	<script src="bootstarp-table/js/bootstrap-table.js"></script>
-	<script src="bootstarp-table/js/bootstrap-table-editable.js"></script>
-	<script src="bootstarp-table/js/bootstrap-table-zh-CN.min.js"></script>
+    <!--bootstrap table组件以及中文包的引用-->
+    <link href="bootstarp-table/css/bootstrap-table.min.css" rel="stylesheet"/>
+    <script src="bootstarp-table/js/bootstrap-table.js"></script>
+    <script src="bootstarp-table/js/bootstrap-table-editable.js"></script>
+    <script src="bootstarp-table/js/bootstrap-table-zh-CN.min.js"></script>
 
-	<script src="js/utils.js"></script>
+    <script src="js/utils.js"></script>
 </head>
 <body>
 <div class="panel-body" style="padding-bottom:0px;">
-	<div class="panel panel-default">
-		<!--<div class="panel-heading">选择文件</div>-->
-		<div class="panel-body">
-			<div class="form-group" id="identitys">
-				<!--<label class="col-sm-2 control-label">导入选择</label>-->
-				<label class="checkbox-inline">
-					<input type="radio" name="identity"  value="0" checked>全部人
-				</label>
-				<!--<label class="checkbox-inline">
-					<input type="radio" name="identity"  value="1" > 中奖人
-				</label>-->
+    <div class="panel panel-default">
+        <!--<div class="panel-heading">选择文件</div>-->
+        <div class="panel-body">
+            <div class="form-group" id="identitys">
+                <!--<label class="col-sm-2 control-label">导入选择</label>-->
+                <label class="checkbox-inline">
+                    <input type="radio" name="identity" value="0" checked>全部人
+                </label>
+                <!--<label class="checkbox-inline">
+                    <input type="radio" name="identity"  value="1" > 中奖人
+                </label>-->
 
-			</div>
-			<div class="nav-bar">
-				<div class="btn-toolbar" role="toolbar">
-					<div class="input-group" style="width: 250px;" onclick="$('#FileInput')[0].click()">
+            </div>
+            <div class="nav-bar">
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="input-group" style="width: 250px;" onclick="$('#FileInput')[0].click()">
 					<span class="input-group-btn">
-				        <button class="btn btn-info" type="button" ><i class="glyphicon glyphicon-folder-open"></i>选择文件</button>
+				        <button class="btn btn-info" type="button"><i
+                                class="glyphicon glyphicon-folder-open"></i>选择文件</button>
 				      </span>
-						<input type="text" class="form-control" placeholder="请选择文件" readonly="readonly" id="excelfile">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <input type="text" class="form-control" placeholder="请选择文件" readonly="readonly" id="excelfile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div id="toolbar" class="btn-group">
-		<!-- <button id="btn_add" type="button" class="btn btn-default">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-		</button>
-		<button id="btn_edit" type="button" class="btn btn-info">
-			<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改/锁定
-		</button>
-		<button id="btn_delete" type="button" class="btn btn-danger">
-			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-		</button> -->
-
-		<button id="btn_get" type="button" class="btn btn-success">
-			确认提交
+    <div id="toolbar" class="btn-group">
+        <!-- <button id="btn_add" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
         </button>
-        
+        <button id="btn_edit" type="button" class="btn btn-info">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改/锁定
+        </button>
+        <button id="btn_delete" type="button" class="btn btn-danger">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+        </button> -->
+
+        <button id="btn_get" type="button" class="btn btn-success">
+            确认提交
+        </button>
+
         <a href="html/lucky.html" type="button" class="btn btn-primary" id="lucky" style="margin-left:20px">开始抽奖</a>
-	</div>
-	<table id="tb_table"></table>
-    <input type="file" id="FileInput" hidden="hidden" style="display: none;" onchange="importfile(this)" />
-    
-    
+    </div>
+    <table id="tb_table"></table>
+    <input type="file" id="FileInput" hidden="hidden" style="display: none;" onchange="importfile(this)"/>
 </div>
 </body>
 <script>
-	var $table =  $('#tb_table');
-	var globaltitle = {};
+    var $table = $('#tb_table');
+    var globaltitle = {};
     var emptydata = {};
-    var configjson ;
+    var configjson;
+    var ZJArr = [{"name": "开**", "phone": "153****6233", "county": "苏州", "city": "江苏", "id": 1},
+        {"name": "李**", "phone": "138****7120", "county": "苏州", "city": "江苏", "id": 2},
+        {"name": "李**", "phone": "188****5502", "county": "苏州", "city": "江苏", "id": 3},
+        {"name": "刘*", "phone": "152****0478", "county": "苏州", "city": "江苏", "id": 4},
+        {"name": "李**", "phone": "181****0858", "county": "苏州", "city": "江苏", "id": 5},
+        {"name": "李**", "phone": "138****0267", "county": "苏州", "city": "江苏", "id": 6},
+        {"name": "杨**", "phone": "135****2983", "county": "苏州", "city": "江苏", "id": 7},
+        {"name": "胡**", "phone": "137****0504", "county": "苏州", "city": "江苏", "id": 8},
+        {"name": "程**", "phone": "158****9890", "county": "苏州", "city": "江苏", "id": 9},
+        {"name": "胡**", "phone": "189****2667", "county": "苏州", "city": "江苏", "id": 10},
+        {"name": "陈**", "phone": "159****7762", "county": "苏州", "city": "江苏", "id": 11},
+        {"name": "陈**", "phone": "185****1927", "county": "苏州", "city": "江苏", "id": 12},
+        {"name": "尹**", "phone": "139****2228", "county": "苏州", "city": "江苏", "id": 13},
+        {"name": "代**", "phone": "189****3017", "county": "苏州", "city": "江苏", "id": 14},
+        {"name": "李**", "phone": "158****4444", "county": "苏州", "city": "江苏", "id": 15},
+        {"name": "花*", "phone": "189****3789", "county": "苏州", "city": "江苏", "id": 16},
+        {"name": "花*", "phone": "156****9649", "county": "苏州", "city": "江苏", "id": 17},
+        {"name": "陈*", "phone": "138****3657", "county": "苏州", "city": "江苏", "id": 18},
+        {"name": "肖*", "phone": "135****2889", "county": "苏州", "city": "江苏", "id": 19},
+        {"name": "张**", "phone": "173****3160", "county": "苏州", "city": "江苏", "id": 20},
+        {"name": "王**", "phone": "158****5599", "county": "苏州", "city": "江苏", "id": 21},
+        {"name": "衡**", "phone": "151****4827", "county": "苏州", "city": "江苏", "id": 22},
+        {"name": "陈**", "phone": "186****1906", "county": "苏州", "city": "江苏", "id": 23},
+        {"name": "栾**", "phone": "139****8863", "county": "苏州", "city": "江苏", "id": 24},
+        {"name": "周*", "phone": "137****0505", "county": "苏州", "city": "江苏", "id": 25},
+        {"name": "沈**", "phone": "187****9097", "county": "苏州", "city": "江苏", "id": 26},
+        {"name": "房**", "phone": "137****8926", "county": "苏州", "city": "江苏", "id": 27},
+        {"name": "房**", "phone": "133****8676", "county": "苏州", "city": "江苏", "id": 28},
+        {"name": "邵**", "phone": "158****7159", "county": "苏州", "city": "江苏", "id": 29},
+        {"name": "邵**", "phone": "180****1328", "county": "苏州", "city": "江苏", "id": 30},
+        {"name": "贺*", "phone": "139****1116", "county": "苏州", "city": "江苏", "id": 31},
+        {"name": "李*", "phone": "138****0432", "county": "苏州", "city": "江苏", "id": 32},
+        {"name": "李*", "phone": "139****3492", "county": "苏州", "city": "江苏", "id": 33},
+        {"name": "鲁**", "phone": "152****2217", "county": "苏州", "city": "江苏", "id": 34},
+        {"name": "祝**", "phone": "135****1212", "county": "苏州", "city": "江苏", "id": 35},
+        {"name": "葛**", "phone": "136****9078", "county": "苏州", "city": "江苏", "id": 36},
+        {"name": "王**", "phone": "138****1250", "county": "苏州", "city": "江苏", "id": 37},
+        {"name": "程**", "phone": "131****9075", "county": "苏州", "city": "江苏", "id": 38},
+        {"name": "程**", "phone": "158****7821", "county": "苏州", "city": "江苏", "id": 39},
+        {"name": "刘**", "phone": "153****9204", "county": "苏州", "city": "江苏", "id": 40},
+        {"name": "刘**", "phone": "150****1643", "county": "苏州", "city": "江苏", "id": 41},
+        {"name": "李**", "phone": "136****4688", "county": "苏州", "city": "江苏", "id": 42},
+        {"name": "郝*", "phone": "139****1853", "county": "苏州", "city": "江苏", "id": 43},
+        {"name": "叶**", "phone": "137****5818", "county": "苏州", "city": "江苏", "id": 44},
+        {"name": "叶**", "phone": "130****3505", "county": "苏州", "city": "江苏", "id": 45},
+        {"name": "李**", "phone": "130****3505", "county": "苏州", "city": "江苏", "id": 46}];
 
-	function inittitle(gtitle) {
+    function inittitle(gtitle) {
         var firstcolumns = [
             {
                 field: "check", title: "", checkbox: true, formatter: function (value, row, index) {
 //                return row.index = index + 1; //返回行号
-            }
+                }
             },
             {
                 field: "id", title: "ID", align: "center", edit: false, formatter: function (value, row, index) {
 //                console.log(index)
 //                return row.index = index ; //返回行号
-				return index;
-            }
+                    return index + 1;
+                }
             }
         ]
 
@@ -121,39 +166,39 @@
 //                    }
                 }
             }
-			obj.field = gtitle[a];
-			obj.title = a;
-			obj.editable.title = a;
+            obj.field = gtitle[a];
+            obj.title = a;
+            obj.editable.title = a;
 
             firstcolumns.push(obj);
         }
 
-		firstcolumns.push(lastcolumns);
+        firstcolumns.push(lastcolumns);
 
-		return firstcolumns;
+        return firstcolumns;
 
     }
 
 
-    var TableInit = function (data,columns) {
+    var TableInit = function (data, columns) {
         var oTableInit = new Object();
         //初始化Table
         oTableInit.Init = function () {
             $table.bootstrapTable({
                 url: '',         //请求后台的URL（*）
-				data:data,
+                data: data,
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
                 cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-                pagination: true,                   //是否显示分页（*）
+                pagination: false,                   //是否显示分页（*）
                 sortable: false,                     //是否启用排序
                 sortOrder: "asc",                   //排序方式
                 queryParams: '',//传递参数（*）
                 sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                pageNumber:1,                       //初始化加载第一页，默认第一页
+                pageNumber: 1,                       //初始化加载第一页，默认第一页
                 pageSize: 10,                       //每页的记录行数（*）
-                pageList: [10,50, 100,300,500],        //可供选择的每页的行数（*）
+                pageList: [10, 50, 100, 300, 500],        //可供选择的每页的行数（*）
 //                search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
                 strictSearch: true,
                 showColumns: true,                  //是否显示所有的列
@@ -165,16 +210,16 @@
 //                showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
                 cardView: false,                    //是否显示详细视图
                 detailView: false,                   //是否显示父子表
-                columns:columns,
+                columns: columns,
                 onClickRow: function (row) {
-                   console.log(row)
+                    console.log(row)
                 },
             });
         };
 
         return oTableInit;
     };
-    
+
     //初始化页面上面的按钮事件
     var ButtonInit = function () {
         var oInit = new Object();
@@ -185,70 +230,70 @@
             $('#btn_delete').click(deletecolumns)
             $('#btn_edit').click(editcolumns)
             $('#identitys').change(changeidentitys)
-
         };
-
         return oInit;
     };
-	let winpeople =[{"name":"开**","phone":"153****6233","county":"大兴","city":"北京","id":0},{"name":"李**","phone":"138****7120","county":"大兴","city":"北京","id":1},{"name":"李**","phone":"188****5502","county":"大兴","city":"北京","id":2},{"name":"刘*","phone":"152****0478","county":"大兴","city":"北京","id":3},{"name":"李**","phone":"181****0858","county":"大兴","city":"北京","id":4},{"name":"李**","phone":"138****0267","county":"大兴","city":"北京","id":5},{"name":"杨**","phone":"135****2983","county":"大兴","city":"北京","id":6},{"name":"胡**","phone":"137****0504","county":"大兴","city":"北京","id":7},{"name":"程**","phone":"158****9890","county":"大兴","city":"北京","id":8},{"name":"胡**","phone":"189****2667","county":"大兴","city":"北京","id":9},{"name":"陈**","phone":"159****7762","county":"大兴","city":"北京","id":10},{"name":"陈**","phone":"185****1927","county":"大兴","city":"北京","id":11},{"name":"尹**","phone":"139****2228","county":"大兴","city":"北京","id":12},{"name":"代**","phone":"189****3017","county":"大兴","city":"北京","id":13},{"name":"李**","phone":"158****4444","county":"大兴","city":"北京","id":14},{"name":"花*","phone":"189****3789","county":"大兴","city":"北京","id":15},{"name":"花*","phone":"156****9649","county":"大兴","city":"北京","id":16},{"name":"陈*","phone":"138****3657","county":"大兴","city":"北京","id":17},{"name":"肖*","phone":"135****2889","county":"大兴","city":"北京","id":18},{"name":"张**","phone":"173****3160","county":"大兴","city":"北京","id":19},{"name":"王**","phone":"158****5599","county":"大兴","city":"北京","id":20},{"name":"衡**","phone":"151****4827","county":"大兴","city":"北京","id":21},{"name":"陈**","phone":"186****1906","county":"大兴","city":"北京","id":22},{"name":"栾**","phone":"139****8863","county":"大兴","city":"北京","id":23},{"name":"周*","phone":"137****0505","county":"大兴","city":"北京","id":24},{"name":"沈**","phone":"187****9097","county":"大兴","city":"北京","id":25},{"name":"房**","phone":"137****8926","county":"大兴","city":"北京","id":26},{"name":"房**","phone":"133****8676","county":"大兴","city":"北京","id":27},{"name":"邵**","phone":"158****7159","county":"大兴","city":"北京","id":28},{"name":"邵**","phone":"180****1328","county":"大兴","city":"北京","id":29},{"name":"贺*","phone":"139****1116","county":"大兴","city":"北京","id":30},{"name":"李*","phone":"138****0432","county":"大兴","city":"北京","id":31},{"name":"李*","phone":"139****3492","county":"大兴","city":"北京","id":32},{"name":"鲁**","phone":"152****2217","county":"大兴","city":"北京","id":33},{"name":"祝**","phone":"135****1212","county":"大兴","city":"北京","id":34},{"name":"葛**","phone":"136****9078","county":"大兴","city":"北京","id":35},{"name":"王**","phone":"138****1250","county":"大兴","city":"北京","id":36},{"name":"程**","phone":"131****9075","county":"大兴","city":"北京","id":37},{"name":"程**","phone":"158****7821","county":"大兴","city":"北京","id":38},{"name":"刘**","phone":"153****9204","county":"大兴","city":"北京","id":39},{"name":"刘**","phone":"150****1643","county":"大兴","city":"北京","id":40},{"name":"李**","phone":"136****4688","county":"大兴","city":"北京","id":41},{"name":"郝*","phone":"139****1853","county":"大兴","city":"北京","id":42},{"name":"叶**","phone":"137****5818","county":"大兴","city":"北京","id":43},{"name":"叶**","phone":"130****3505","county":"大兴","city":"北京","id":44},{"name":"李**","phone":"130****3505","county":"大兴","city":"北京","id":45}]
-    localStorage.setItem("winningPeople",JSON.stringify(winpeople));
-	$('#btn_get').click(function () {
+    let winpeople = ZJArr;
+    localStorage.setItem("winningPeople", JSON.stringify(winpeople));
+    $('#btn_get').click(function () {
         var table = $table.bootstrapTable('getData');
         var type = $('#identitys input:radio:checked').val();
-        for(let i=0;i<table.length;i++) {
-            var phone = table[i]['phone']+"";
+        for (let i = 0; i < table.length; i++) {
+            var phone = table[i]['phone'] + "";
             var name = table[i]['name'];
             var pattern = /(\d{3})(\d{4})(\d{4})/;
             var namereg = /(?<=.)./g;
             table[i]['phone'] = phone.replace(pattern, "$1****$3");
             table[i]['name'] = name.replace(namereg, "*");
         }
-        if(type == 0) {
-            localStorage.setItem("allPeople",JSON.stringify(table));
+        if (type == 0) {
+            localStorage.setItem("allPeople", JSON.stringify(table));
         } else {
-            localStorage.setItem("winningPeople",JSON.stringify(table));
+            localStorage.setItem("winningPeople", JSON.stringify(table));
         }
         alert("提交成功")
     })
     // $("#lucky").click(function() {
     //     window.open('/index.html');
     // });
-    function  addcolumns() {
+    function addcolumns() {
         var table = $table.bootstrapTable('getData'),
-            length = table.length;;
+            length = table.length;
+        ;
         var type = $('#identitys input:radio:checked').val();
         var empty = cloneObj(configjson[type].data);
-        empty.id = length +1;
+        empty.id = length + 1;
 
-        $table.bootstrapTable('load',table );
+        $table.bootstrapTable('load', table);
         $table.bootstrapTable('selectPage', 1); //Jump to the first page
         $table.bootstrapTable('prepend', empty);
 
     }
-	function deletecolumns() {
-        var obj =$table.bootstrapTable('getSelections');
+
+    function deletecolumns() {
+        var obj = $table.bootstrapTable('getSelections');
         var ids = $.map(obj, function (row) {
             return row.id;
         });
-        if(ids.length>0){
+        if (ids.length > 0) {
             $table.bootstrapTable('remove', {field: 'id', values: ids});
-        }else {
+        } else {
             alert("请至少选择一行删除")
-		}
+        }
     }
 
-	function editcolumns() {
+    function editcolumns() {
         $table.find('.editable').editable('toggleDisabled');
     }
 
-    function  removeData(index) {
+    function removeData(index) {
         $table.bootstrapTable('remove', {field: 'id', values: [index]});
     }
 
-//    $table.on("click-row.bs.table",function(e, row, $element) {
-//        var  index= $element.data('index');
-//        alert(index);
-//    });
+    //    $table.on("click-row.bs.table",function(e, row, $element) {
+    //        var  index= $element.data('index');
+    //        alert(index);
+    //    });
 
     function importfile(file) {//导入
         var f = file.files[0];
@@ -256,19 +301,19 @@
         var wb;//读取完成的数据
         var rABS = false; //是否将文件读取为二进制字符串
         var ie = IEVersion();
-        if(ie != -1 && ie != 'edge'){
-            if(ie<10){
+        if (ie != -1 && ie != 'edge') {
+            if (ie < 10) {
                 return;
-            }else{
+            } else {
                 rABS = true;
             }
         }
 
-        if(checkfilename(file)){
+        if (checkfilename(file)) {
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 var data = e.target.result;
-                if(rABS) {
+                if (rABS) {
                     wb = XLSX.read(btoa(fixdata(data)), {//手动转化
                         type: 'base64'
                     });
@@ -279,10 +324,10 @@
                 }
                 var result = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 
-                resoveresult(globaltitle,result);
+                resoveresult(globaltitle, result);
             };
 
-            if(rABS) {
+            if (rABS) {
                 reader.readAsArrayBuffer(f);
             } else {
                 reader.readAsBinaryString(f);
@@ -292,18 +337,18 @@
 
     }
 
-    function resoveresult(config,list) {
+    function resoveresult(config, list) {
         $table.bootstrapTable('showLoading');
-        var rs= [];
-        if(list.length>0){
-            for(var one in list){
+        var rs = [];
+        if (list.length > 0) {
+            for (var one in list) {
                 var obj = {};
-                for(var index in config){
+                for (var index in config) {
 
                     var key = list[one][index];
-                    if(!key){
-                        obj[config[index]]="";
-                    }else {
+                    if (!key) {
+                        obj[config[index]] = "";
+                    } else {
                         obj[config[index]] = key;
                     }
 
@@ -311,15 +356,15 @@
                 obj.id = Number(one);
                 rs.push(obj);
             }
-            $table.bootstrapTable('load',rs );
+            $table.bootstrapTable('load', rs);
         }
         $table.bootstrapTable('hideLoading');
     }
 
     function getjson(url) {
-        $.ajaxSetup({async:false});
+        $.ajaxSetup({async: false});
         var rs;
-        $.getJSON(url, function(json){
+        $.getJSON(url, function (json) {
             rs = json;
         });
         return rs;
@@ -337,13 +382,14 @@
             }
         }
     }
-    
+
     function initTable() {
         var columns = inittitle(globaltitle);
         //1.初始化Table
-        var oTable = new TableInit([],columns);
+        var oTable = new TableInit([], columns);
         oTable.Init();
     }
+
     $(function () {
         configjson = getjson('config/data.json');
         globaltitle = configjson[1].title;
@@ -351,7 +397,6 @@
         //2.初始化Button的点击事件
         var oButtonInit = new ButtonInit();
         oButtonInit.Init();
-
     });
 </script>
 </html>
